@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- struts2的配置 -->
+<struts>
+
+	<package name="default_package" extends="struts-default">
+		
+		<!-- 拦截器的配置
+			1:redirect:action处理完后重定向到一个视图资源（如：jsp页面），请求参数全部丢失，action处理结果也全部丢失。
+    	 	2:redirect-action:action处理完后重定向到一个action，请求参数全部丢失，action处理结果也全部丢失。
+     		3:chain:action处理完后转发到一个action，请求参数全部丢失，action处理结果不会丢失。
+		
+		 -->
+		<interceptors>
+			<interceptor name="userInterceptor" class="com.bie.action.UserInterceptor"></interceptor>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="userInterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 执行指定的拦截器 -->
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		
+		
+		<!-- 全局视图 -->
+		<global-results>
+			<result name="success">/index.jsp</result>
+			
+			<!-- 拦截器，没有登陆的配置的全局视图 -->
+			<result name="loginGlobal" type="redirect">/login.jsp</result>
+			
+			<!-- 错误视图配置 -->
+			<result name="error">/error.jsp</result>
+			<result name="null">/null.jsp</result>
+		</global-results>
+		
+		<!-- 全局异常,必须在全局视图下面 -->
+		<global-exception-mappings>
+			<!-- result回去找全局视图的标签 -->
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+			<exception-mapping result="null" exception="java.lang.NullPointerException"></exception-mapping>
+		</global-exception-mappings>
+		
+		
+		<!-- action实例交给spring容器进行创建 -->
+		<action name="emp_*" class="empAction" method="{1}">
+			<!-- 列表展示 -->
+			<result name="list">/list.jsp</result>
+			
+			<!-- 添加员工信息 -->
+			<result name="addEmp">/addEmp.jsp</result>	
+			
+			<!-- 添加成功，进入列表，防止刷新就多一条记录的问题，所以使用重定向 -->
+			<result name="listAction" type="redirectAction">emp_list</result>
+		
+			<!-- 修改 -->
+			<result name="updateEmp">/updateEmp.jsp</result>
+			
+			
+			
+		</action>
+	
+		
+		<!-- 管理员的action -->
+		<action name="admin_*" class="adminAction" method="{1}">
+			
+			<!-- 登陆失败 -->
+			<result name="loginFaild">/login.jsp</result>
+		
+			<!-- 登陆成功 -->
+			<result name="login" type="redirectAction">emp_list</result>
+			
+			<!-- 登陆的页面 -->
+			<result name="register">/login.jsp</result>
+			
+		</action>		
+		
+	</package>
+  
+
+</struts>

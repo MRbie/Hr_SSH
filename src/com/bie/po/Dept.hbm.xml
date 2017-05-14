@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- hibernate实体类的配置 -->
+<hibernate-mapping package="com.bie.po">
+	
+	<class name="Dept" table="dept">
+		<!-- 实体类的主键 -->	
+		<id column="deptId" name="deptId">
+			<!-- 设置自增的 -->
+			<generator class="native"></generator>
+		</id>
+		
+		<!-- 非主键字段 -->
+		<property name="deptName" column="deptName"></property>
+		
+	</class>
+	
+</hibernate-mapping>
+

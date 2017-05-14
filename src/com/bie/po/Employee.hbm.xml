@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- hibernate的配置 -->
+<hibernate-mapping package="com.bie.po">
+	
+	<class name="Employee" table="employee">
+		<!-- 主键字段 -->
+		<id name="empId" column="empId">
+			<generator class="native"></generator>
+		</id>
+		
+		<!-- 非主键字段 -->
+		<property name="empName" column="empName"></property>
+		<property name="salary" column="salary"></property>
+		
+		<!-- 多对一 
+			如果package写了com.bie.po,这里直接使用Dept即可；
+		-->
+		<many-to-one lazy="false" name="dept" column="deptId" class="Dept"></many-to-one>
+		
+			
+	</class>
+
+</hibernate-mapping>
+	
+	
