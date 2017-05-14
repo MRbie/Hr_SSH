@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Hr_SSH">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/sql"/>
+        <property name="context-root" value="Hr_SSH"/>
+        <property name="java-output-path" value="/Hr_SSH/build/classes"/>
+    </wb-module>
+</project-modules>
