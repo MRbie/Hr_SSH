@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- hibernate的配置 -->	
+<hibernate-mapping package="com.bie.po">
+
+	<class name="Admin" table="admin">
+		<!-- 主键配置 -->
+		<id name="adminId" column="adminId">
+			<generator class="native"></generator>
+		</id>
+		
+		<!-- 非主键配置 -->
+		<property name="adminName" length="20" column="adminName"></property>
+		<property name="adminPwd" length="20" column="adminPwd"></property>
+		
+		
+	</class>
+
+</hibernate-mapping>
+
+	
